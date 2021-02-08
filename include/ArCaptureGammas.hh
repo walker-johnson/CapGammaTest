@@ -26,16 +26,21 @@ using namespace std;
 class ArCaptureGammas
 {
  public:
-  
+  G4int A;
+  void SetA(G4int theA){
+    A = theA;
+  };
   ArCaptureGammas();
   ~ArCaptureGammas();
   G4ReactionProductVector * GetGammas ();
   vector<double>  Initialize ();
   vector<double> CapAr40();
+  vector<double> CapAr36();
   vector<double> continuum();
   
   
  public:
+  
   double Elevel;
   double  xint[4][750];
  

@@ -48,9 +48,204 @@ G4ReactionProductVector *  ArCaptureGammas::GetGammas ()
 
 vector<double>  ArCaptureGammas::Initialize ()
 {
-  vector<double> Eg; 
-  Eg = CapAr40(); // other isotopes to be added
+  vector<double> Eg;
+  if (A == 40){
+    Eg = CapAr40(); // other isotopes to be added
+  }else if (A == 36){
+    Eg = CapAr36();
+  }
   return Eg;
+}
+
+vector<double> ArCaptureGammas::CapAr36()
+{
+    vector<double> v_gammas;
+   // List of levels    0        1         2       3       4        5    6      7         8     9        10     11       12     13
+    double Levels[14] = {8791.2, 6826.2, 6583.7, 5090.5, 4637.6, 4578.7, 4448.6, 3981.1, 3938.5, 3518.0, 2490.9, 1611.9, 1410.6, 0.0};
+    double level = 0.0;
+    
+    int nb_gammas = 0; // number of gammas for this decay
+    int probability = 0.; // the probability we'll use in the loop
+    int Etot = 0.;
+    level = Levels[0];
+    nb_gammas = 0;
+    
+      while (level != Levels[13]) {
+	
+	if (level == Levels[0]) {
+	  probability = G4UniformRand()*(10.9+37.5+25.0+0.8+1.6+3.2+0.8+1.8+13.4+2.7+2.4);
+	  if (probability <= 10.9){
+	    level = Levels[13];
+	    v_gammas.push_back(8.7904); nb_gammas++;
+	    continue;
+	  } else if (probability > 10.9 && probability <= 10.9+37.5) {
+	    level = Levels[10];
+	    v_gammas.push_back(6.2997); nb_gammas++;
+	    continue;
+	  } else if (probability > 10.9+37.5 && probability <= 10.9+37.5+25.0) {
+	    level = Levels[9];
+	    v_gammas.push_back(5.2726); nb_gammas++;
+	    continue;
+	  } else if (probability > 10.9+37.5+25.0 && probability <= 10.9+37.5+25.0+0.8) {
+	    level = Levels[8];
+	    v_gammas.push_back(4.8518); nb_gammas++;
+	    continue;
+	  } else if (probability > 10.9+37.5+25.0+0.8 && probability <= 10.9+37.5+25.0+0.8+1.6) {
+	    level = Levels[7];
+	    v_gammas.push_back(4.8103); nb_gammas++;
+	    continue;
+	  } else if (probability > 10.9+37.5+25.0+0.8+1.6 && probability <= 10.9+37.5+25.0+0.8+1.6+3.2) {
+	    level = Levels[6];
+	    v_gammas.push_back(4.3423); nb_gammas++;
+	    continue;
+	  } else if (probability > 10.9+37.5+25.0+0.8+1.6+3.2 && probability <= 10.9+37.5+25.0+0.8+1.6+3.2+0.8) {
+	    level = Levels[5];
+	    v_gammas.push_back(4.2116); nb_gammas++;
+	    continue;
+	  } else if (probability > 10.9+37.5+25.0+0.8+1.6+3.2+0.8 && probability <= 10.9+37.5+25.0+0.8+1.6+3.2+0.8+1.8) {
+	    level = Levels[4];
+	    v_gammas.push_back(4.1530); nb_gammas++;
+	    continue;
+	  } else if (probability > 10.9+37.5+25.0+0.8+1.6+3.2+0.8+1.8 && probability <= 10.9+37.5+25.0+0.8+1.6+3.2+0.8+1.8+13.4) {
+	    level = Levels[3];
+	    v_gammas.push_back(3.7002); nb_gammas++;
+	    continue;
+	  } else if (probability > 10.9+37.5+25.0+0.8+1.6+3.2+0.8+1.8+13.4 && probability <= 10.9+37.5+25.0+0.8+1.6+3.2+0.8+1.8+13.4+2.7) {
+	    level = Levels[2];
+	    v_gammas.push_back(2.2076); nb_gammas++;
+	    continue;
+	  } else if (probability > 10.9+37.5+25.0+0.8+1.6+3.2+0.8+1.8+13.4+2.7 && probability <= 10.9+37.5+25.0+0.8+1.6+3.2+0.8+1.8+13.4+2.7+2.4) {
+	    level = Levels[1];
+	    v_gammas.push_back(1.9667); nb_gammas++;
+	    continue;
+	  }	
+	}
+	
+	if (level == Levels[1]) {
+	  probability = G4UniformRand()*5.0; //it's ACTUALLY < 5.0
+	  if (probability <= 5.0){
+	    level = Levels[5];
+	    v_gammas.push_back(2.2479); nb_gammas++;
+	    continue;
+	  }
+	}
+	
+	if (level == Levels[2]) {
+	  probability = G4UniformRand()*0.2;
+	  if (probability <= 0.2){
+	    level = Levels[6];
+	    v_gammas.push_back(2.1353); nb_gammas++;
+	    continue;
+	  }
+	}
+	
+	if (level == Levels[3]) {
+	  probability = G4UniformRand()*(7.9+3.1);
+	  if (probability <= 7.9){
+	    level = Levels[12];
+	    v_gammas.push_back(3.6793); nb_gammas++;
+	    continue;
+	  } else if (probability > 7.9 && probability <= 7.9+3.1) {
+	    level = Levels[10];
+	    v_gammas.push_back(2.5996); nb_gammas++;
+	    continue;
+	  }
+	}
+	
+	if (level == Levels[4]) {
+	  probability = G4UniformRand()*(1.0+0.2);
+	  if (probability <= 1.0){
+	    level = Levels[12];
+	    v_gammas.push_back(3.2269); nb_gammas++;
+	    continue;
+	  } else if (probability > 1.0 && probability <= 1.0+0.2) {
+	    level = Levels[10];
+	    v_gammas.push_back(2.1452); nb_gammas++;
+	    continue;
+	  }
+	}
+	
+	if (level == Levels[5]) {
+	  probability = G4UniformRand()*(0.3);
+	  if (probability <= 0.3) {
+	    level = Levels[10];
+	    v_gammas.push_back(2.0873); nb_gammas++;
+	    continue;
+	  }
+	}
+	
+	if (level == Levels[6]) {
+	  probability = G4UniformRand()*(2.0);
+	  if (probability <= 2.0) {
+	    level = Levels[10];
+	    v_gammas.push_back(1.9573); nb_gammas++;
+	    continue;
+	  }
+	}
+	
+	if (level == Levels[7]) {
+	  probability = G4UniformRand()*(1.3);
+	  if (probability <= 1.3) {
+	    level = Levels[13];
+	    v_gammas.push_back(3.9814); nb_gammas++;
+	    continue;
+	  }
+	}
+	
+	if (level == Levels[8]) {
+	  probability = G4UniformRand()*(1.0);
+	  if (probability <= 1.0) {
+	    level = Levels[13];
+	    v_gammas.push_back(3.9380); nb_gammas++;
+	    continue;
+	  }
+	}
+	
+	if (level == Levels[9]) {
+	  probability = G4UniformRand()*(23.7+2.7);
+	  if (probability <= 23.7){
+	    level = Levels[12];
+	    v_gammas.push_back(2.1075); nb_gammas++;
+	    continue;
+	  } else if (probability > 23.7 && probability <= 23.7+2.7) {
+	    level = Levels[10];
+	    v_gammas.push_back(1.0267); nb_gammas++;
+	    continue;
+	  }
+	}
+	
+	if (level == Levels[10]) {
+	  probability = G4UniformRand()*(57.0+0.5);
+	  if (probability <= 57.0){
+	    level = Levels[13];
+	    v_gammas.push_back(2.4906); nb_gammas++;
+	    continue;
+	  } else if (probability > 57.0 && probability <= 57.0+0.5) {
+	    level = Levels[11];
+	    v_gammas.push_back(.8785); nb_gammas++;
+	    continue;
+	  }
+	}
+	
+	if (level == Levels[11]) {
+	  probability = G4UniformRand()*(3.4);
+	  if (probability <= 3.4) {
+	    level = Levels[13];
+	    v_gammas.push_back(1.6117); nb_gammas++;
+	    continue;
+	  }
+	}
+	
+	if (level == Levels[12]) {
+	  probability = G4UniformRand()*(33.0);
+	  if (probability <= 33.0) {
+	    level = Levels[13];
+	    v_gammas.push_back(1.4103); nb_gammas++;
+	    continue;
+	  }
+	}	
+      }
+      return v_gammas;
 }
 
 vector<double>  ArCaptureGammas::CapAr40()

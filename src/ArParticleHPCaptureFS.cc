@@ -81,6 +81,7 @@
     // Sample the photons
     G4ReactionProductVector * thePhotons = 0;
     if (useArCapGamma) {
+      theFinalgammas.SetA(G4int(theBaseA));
     	thePhotons = theFinalgammas.GetGammas(); 
     }
     else {

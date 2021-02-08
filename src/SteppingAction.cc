@@ -90,12 +90,19 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
   	
   // Get particle name
   G4String particleName = step->GetTrack()->GetDefinition()->GetParticleName();
+  // Get parent ID
   G4int parentID = step->GetTrack()->GetParentID();
+  // Is the step the first in the track?
   G4bool first = step->IsFirstStepInVolume();
 
-  if(particleName == "gamma" && parentID == 1 && first){
+  if(particleName == "gamma" && parentID == 1){
 
-    G4AnalysisManager::Instance()->FillH1(2,ekin);
+    G4AnalysisManager::Instance()->FillH1(1,ekin);
+
+    if(first){
+
+      G4AnalysisManager::Instance()->FillH1(2,ekin);
+    }
 
   }
 }

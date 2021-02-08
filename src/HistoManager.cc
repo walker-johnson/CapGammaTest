@@ -61,17 +61,12 @@ void HistoManager::Book()
   analysisManager->SetActivation(true);     //enable inactivation of histograms
   
   // Define histograms start values
-  const G4int kMaxHisto = 8;
-  const G4String id[] = {"0","1","2","3","4","5","6","7"};
+  const G4int kMaxHisto = 3;
+  const G4String id[] = {"0","1","2"};
   const G4String title[] = 
                 { "dummy",                                           //0
                   "KE of all Gammas",                 //1
-                  "KE of Neutron Cap Gammas",                     //2
-                  "KE of neutron entering window",                   //3
-                  "KE of  neutron entering door",                    //4
-                  "KE of Neutrons Leaving Lab Boundary",             //5
-                  "KE of Gamma Leaving Lab Boundary",                //6
-                  "incident neutron: energy distribution below 1*eV" //7
+                  "KE of Argon Cap Gammas",                     //2
                  };  
 
   // Default values (to be reset via /analysis/h1/set command)               
