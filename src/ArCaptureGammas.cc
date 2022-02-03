@@ -49,15 +49,18 @@ G4ReactionProductVector *  ArCaptureGammas::GetGammas ()
 vector<double>  ArCaptureGammas::Initialize ()
 {
   vector<double> Eg;
+  //here the correct gamma cascade is chosen based on the Isotope
+  //other argon isotopes can be added with their own function, and
+  //selected in this if statement
   if (A == 40){
-    Eg = CapAr40(); // other isotopes to be added
+    Eg = CapAr40(); 
   }else if (A == 36){
     Eg = CapAr36();
   }
   return Eg;
 }
 
-vector<double> ArCaptureGammas::CapAr36()
+vector<double> ArCaptureGammas::CapAr36() // added by W. Johnson
 {
     vector<double> v_gammas;
    // List of levels    0        1         2       3       4        5    6      7         8     9        10     11       12     13
@@ -467,8 +470,6 @@ vector<double>  ArCaptureGammas::CapAr40()
 
 vector<double>  ArCaptureGammas::continuum()
 {
-  // continuum part of gadolinium
-  //cross sections
   vector<double> energy;
   
   return energy;
